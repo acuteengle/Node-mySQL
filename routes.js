@@ -1,25 +1,43 @@
-const express = require('express');
-const db = require('./database');
+const express = require("express");
+const db = require("./database");
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get("/pokemon", async (req, res, next) => {
     try {
-        let results = await db.all();
+        let results = await db.allPokemon();
         res.json(results);
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e);
         res.sendStatus(500);
     }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get("/pokemon/:id", async (req, res, next) => {
     try {
-        let results = await db.one(req.params.id);
+        let results = await db.onePokemon(req.params.id);
         res.json(results);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
     }
-    catch (e) {
+});
+
+router.get("/pokemon_type/", async (req, res, next) => {
+    try {
+        let results = await db.allPokemonTypes(req.params.id);
+        res.json(results);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+router.get("/pokemon_type/:id", async (req, res, next) => {
+    try {
+        let results = await db.onePokemonType(req.params.id);
+        res.json(results);
+    } catch (e) {
         console.log(e);
         res.sendStatus(500);
     }
