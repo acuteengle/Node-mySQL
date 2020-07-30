@@ -4,7 +4,7 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     user: "root",
     password: "test123*",
-    database: "sys",
+    database: "pokemonDB",
     host: "localhost",
     port: "3306",
 });

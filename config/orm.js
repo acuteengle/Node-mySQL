@@ -43,15 +43,15 @@ const orm = {
         });
     },
     updateOne: (table, id, params) => {
-        const sets = Object.entries(params).map((p) => {
-            return `${p[0]} = ?`;
+        const sets = Object.getOwnPropertyNames(params).map((p) => {
+            return `${p} = ?`;
         });
-        params.append(id);
+        const values = [...Object.values(params), id];
         return new Promise((resolve, reject) => {
             let queryString = "UPDATE " + table;
-            queryString += "SET " + sets.join(", ");
-            queryString += "WHERE id = ?;";
-            pool.query(queryString, Object.values(params), (err, results) => {
+            queryString += " SET " + sets.join(", ");
+            queryString += " WHERE id = ?;";
+            pool.query(queryString, Object.values(values), (err, results) => {
                 if (err) {
                     return reject(err);
                 } else {

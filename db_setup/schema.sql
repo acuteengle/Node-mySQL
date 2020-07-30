@@ -1,4 +1,4 @@
-USE sys;
+USE pokemonDB;
 
 CREATE TABLE pokemon
 (

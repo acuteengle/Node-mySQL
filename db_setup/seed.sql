@@ -1,4 +1,4 @@
-USE sys;
+USE pokemonDB;
 
 INSERT INTO pokemon_type
     (name)
