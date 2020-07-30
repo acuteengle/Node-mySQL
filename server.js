@@ -1,15 +1,15 @@
-// https://medium.com/@thejasonfile/using-dotenv-package-to-create-environment-variables-33da4ac4ea8f
-require("dotenv").config();
+require("dotenv").config(); // https://medium.com/@thejasonfile/using-dotenv-package-to-create-environment-variables-33da4ac4ea8f
 
 const express = require("express");
-// https://www.youtube.com/watch?v=LVfH5FDOa3o
-const apiRouter = require("./routes");
-
 const app = express();
+
+const pokemon = require("./routes/pokemon");
+const pokemon_type = require("./routes/pokemon_type");
 
 app.use(express.json());
 
-app.use("/api", apiRouter);
+app.use("/api/pokemon", pokemon);
+app.use("/api/pokemon_type", pokemon_type);
 
 const port = process.env.PORT || "3000";
 
